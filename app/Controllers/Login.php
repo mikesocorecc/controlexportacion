@@ -34,6 +34,7 @@ class Login extends BaseController{
 					'first_name' => $data->first_name,
 					'last_name' => $data->last_name,
 					'user' => $data->user,
+					'tipousuario' => $data->tipousuario,
 					'email' => $data->email,
 					'image' => $data->image,
 					'created_at' => $data->created_at,

@@ -9,7 +9,7 @@
         protected $returnType     = 'object';
         protected $useSoftDeletes = false;
     
-        protected $allowedFields = ['first_name', 'last_name','email','user', 'password', 'image', 'status'];
+        protected $allowedFields = ['first_name', 'last_name','email','user','tipousuario', 'password', 'image', 'status'];
     
         protected $useTimestamps = true;
         protected $createdField  = 'created_at';

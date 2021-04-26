@@ -45,13 +45,18 @@
                                               <input type="text" class="form-control <?= ($validation->getError('identificacion')) ? "is-invalid" : "" ?>" id="identificacion" name="identificacion" placeholder="Numero de identificacion" value="<?= $datos->identificacion ?>">
                                               <!-- Error -->
                                               <?= ($validation->getError('identificacion')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('identificacion')."</span>" : ""; ?>
-                                          </div>
+                                          </div>                                     
                                           <div class="form-group col-4">
-                                              <label for="producto">Producto:</label>
-                                              <input type="text" class="form-control <?= ($validation->getError('producto')) ? "is-invalid" : "" ?>" id="producto" name="producto" placeholder="Producto" value="<?= $datos->producto ?>">
-                                              <!-- Error -->
-                                              <?= ($validation->getError('producto')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('producto')."</span>" : ""; ?>
-                                          </div>
+                                                <label for="producto">Producto:</label>
+                                                <select class="form-control <?= ($validation->getError('producto')) ? "is-invalid" : "" ?>" name="producto" id="producto">
+                                                  <option value="" selected disabled>---SELECCIONE PRODUCTO--- </option>
+                                                  <?php foreach ($productos as $producto) { ?>
+                                                    <option value="<?= $producto->id ?>" <?= ($producto->id == $datos->producto) ? "selected" : "" ?> ><?= $producto->producto ?></option>							
+                                                  <?php } ?>
+                                                </select> 
+                                                 <!-- Error -->
+                                                 <?= ($validation->getError('producto')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('producto')."</span>" : ""; ?>     
+                                            </div>
                                           <div class="form-group col-4">
                                               <label for="cantidad">Cantidad:</label>
                                               <input type="text" class="form-control <?= ($validation->getError('cantidad')) ? "is-invalid" : "" ?>" id="cantidad" name="cantidad" placeholder="cantidad" value="<?= $datos->cantidad ?>">

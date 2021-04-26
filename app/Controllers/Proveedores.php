@@ -48,7 +48,7 @@ class Proveedores extends BaseController
             ];
             // Almaceno en la bd y redirecciono a la vista index
             if($this->proveedorModel->save($data)){
-                return redirect()->to('/proveedores')->with("msg", ["type" => "success","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
+                return redirect()->to('/proveedores')->with("msg", ["type" => "info","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
             }else{
                 return redirect()->to('/proveedores')->with("msg", ["type" => "warning","title" => "¡Alerta!","body" => "Registro no almacenado"]);
             }            
@@ -84,7 +84,7 @@ class Proveedores extends BaseController
                 'telefonoContacto'    => $this->request->getVar('telefonoContacto', FILTER_SANITIZE_FULL_SPECIAL_CHARS)              
             ];                              
            if($this->proveedorModel->update( $id, $data)){
-               return redirect()->to('/proveedores')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
+               return redirect()->to('/proveedores')->with("msg", [ "type" => "info", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
            } else{
                return redirect()->to('/proveedores')->with("msg", [ "type" => "warning", "title" => "¡Alerta!", "body" => "Registro no almacenado" ]);
            }               
@@ -94,25 +94,24 @@ class Proveedores extends BaseController
     }
 
 // Eliminar usuario
-//     public function delete(){
-//         $request = \Config\Services::request();
-//         $id = $request->getVar("id");
-//         $this->usuario->where("user_id" ,$id);
-//         $resultado = $this->usuario->delete();
-//         if($resultado){
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "correcto"
-//             ];
-//         }else{
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "error"
-//             ];
-//         }
+    public function delete(){       
+        $id = $this->request->getVar("id", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $this->proveedorModel->where("id" ,$id);
+        $resultado = $this->proveedorModel->delete();
+        if($resultado){
+            $respuesta = [
+                "id" => $id,
+                "resultado" => "correcto"
+            ];
+        }else{
+            $respuesta = [
+                "id" => $id,
+                "resultado" => "error"
+            ];
+        }
         
-//         die(json_encode($respuesta));
-//     }
+        die(json_encode($respuesta));
+    }
     
-// }
+
 }

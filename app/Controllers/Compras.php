@@ -108,7 +108,7 @@ class Compras extends BaseController
                     ]; 
                     $this->detallecompraModel->save($data2); 
                 }                              
-                return redirect()->to('/compras')->with("msg", ["type" => "success","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
+                return redirect()->to('/compras')->with("msg", ["type" => "info","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
                 }else{
                     return redirect()->to('/compras')->with("msg", ["type" => "warning","title" => "¡Alerta!","body" => "Registro no almacenado"]);
                 }
@@ -148,7 +148,7 @@ class Compras extends BaseController
                 'aeropuertodestino'    => $this->request->getVar('aeropuertodestino', FILTER_SANITIZE_FULL_SPECIAL_CHARS)              
             ];                              
            if($this->contenedorModel->update( $id, $data)){
-               return redirect()->to('/contenedores')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
+               return redirect()->to('/contenedores')->with("msg", [ "type" => "info", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
            } else{
                return redirect()->to('/contenedores')->with("msg", [ "type" => "warning", "title" => "¡Alerta!", "body" => "Registro no almacenado" ]);
            }               

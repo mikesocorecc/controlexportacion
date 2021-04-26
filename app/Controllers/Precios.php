@@ -58,7 +58,7 @@ class Precios extends BaseController
             ];
             // Almaceno en la bd y redirecciono a la vista index
             if($this->preciosModel->save($data)){
-                return redirect()->to('/precios')->with("msg", ["type" => "success","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
+                return redirect()->to('/precios')->with("msg", ["type" => "info","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
             }else{
                 return redirect()->to('/precios')->with("msg", ["type" => "warning","title" => "¡Alerta!","body" => "Registro no almacenado"]);
             }            
@@ -96,7 +96,7 @@ class Precios extends BaseController
             ];    
 
            if($this->preciosModel->update($id, $data)){
-               return redirect()->to('/precios')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
+               return redirect()->to('/precios')->with("msg", [ "type" => "info", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
            } else{
                return redirect()->to('/precios')->with("msg", [ "type" => "warning", "title" => "¡Alerta!", "body" => "Registro no almacenado" ]);
            }               
@@ -122,25 +122,24 @@ class Precios extends BaseController
     }
 
 // Eliminar usuario
-//     public function delete(){
-//         $request = \Config\Services::request();
-//         $id = $request->getVar("id");
-//         $this->usuario->where("user_id" ,$id);
-//         $resultado = $this->usuario->delete();
-//         if($resultado){
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "correcto"
-//             ];
-//         }else{
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "error"
-//             ];
-//         }
-        
-//         die(json_encode($respuesta));
-//     }
+public function delete(){    
+    $id = $this->request->getVar("id",FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+    $this->preciosModel->where("id" ,$id);
+    $resultado = $this->preciosModel->delete();
+    if($resultado){
+        $respuesta = [
+            "id" => $id,
+            "resultado" => "correcto"
+        ];
+    }else{
+        $respuesta = [
+            "id" => $id,
+            "resultado" => "error"
+        ];
+    }
     
-// }
+    die(json_encode($respuesta));
+}
+
+
 }

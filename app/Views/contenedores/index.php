@@ -52,7 +52,10 @@
                       <tr>
                           <td><?= $registro->id  ?></td>
                           <td><?= $registro->identificacion ?></td>
-                          <td><?= $registro->producto ?></td>
+                          <td>
+                            <?php foreach ($productos as $producto ) {
+                              if($producto->id == $registro->producto){echo $producto->producto; };
+                            } ?>                            
                           <td><?= $registro->cantidad ?></td>
                           <td><?= $registro->fechaArribo ?></td>                          
                           <td><?= $registro->lugarArribo ?></td>                                                                                                
@@ -60,7 +63,7 @@
                           <td><?= date("d/m/Y", strtotime($registro->created_at)) ?></td>                                                                        
                           <td>
                               <a href="<?= base_url()?>/contenedores/editar/<?= $registro->id  ?>" class="btn  bg-gradient-info btn-sm">Editar</a>
-                              <a  class="btn  bg-gradient-danger btn-sm text-light" id="borrar" data-base_url="<?= base_url(); ?>" data-registro="<?= $registro->id ?>">Borrar</a>
+                              <a  class="btn  bg-gradient-danger btn-sm text-light" id="borrar" data-base_url="<?= base_url(); ?>" data-registro="<?= $registro->id ?>" data-controlador="contenedores" >Borrar</a>
                           </td>
                       </tr>
                         <?php  } ?>

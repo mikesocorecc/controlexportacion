@@ -51,7 +51,7 @@ class Envios extends BaseController
             ];
             // Almaceno en la bd y redirecciono a la vista index
             if($this->envioModel->save($data)){
-                return redirect()->to('/envios')->with("msg", ["type" => "success","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
+                return redirect()->to('/envios')->with("msg", ["type" => "info","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
             }else{
                 return redirect()->to('/envios')->with("msg", ["type" => "warning","title" => "¡Alerta!","body" => "Registro no almacenado"]);
             }            
@@ -88,7 +88,7 @@ class Envios extends BaseController
                 'paisDestino'    => $this->request->getVar('paisDestino', FILTER_SANITIZE_FULL_SPECIAL_CHARS)                
             ];                              
            if($this->envioModel->update( $id, $data)){
-               return redirect()->to('/envios')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
+               return redirect()->to('/envios')->with("msg", [ "type" => "info", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
            } else{
                return redirect()->to('/envios')->with("msg", [ "type" => "warning", "title" => "¡Alerta!", "body" => "Registro no almacenado" ]);
            }               
@@ -98,25 +98,24 @@ class Envios extends BaseController
     }
 
 // Eliminar usuario
-//     public function delete(){
-//         $request = \Config\Services::request();
-//         $id = $request->getVar("id");
-//         $this->usuario->where("user_id" ,$id);
-//         $resultado = $this->usuario->delete();
-//         if($resultado){
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "correcto"
-//             ];
-//         }else{
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "error"
-//             ];
-//         }
-        
-//         die(json_encode($respuesta));
-//     }
+public function delete(){    
+    $id = $this->request->getVar("id",FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+    $this->envioModel->where("id" ,$id);
+    $resultado = $this->envioModel->delete();
+    if($resultado){
+        $respuesta = [
+            "id" => $id,
+            "resultado" => "correcto"
+        ];
+    }else{
+        $respuesta = [
+            "id" => $id,
+            "resultado" => "error"
+        ];
+    }
     
-// }
+    die(json_encode($respuesta));
+}
+
+
 }

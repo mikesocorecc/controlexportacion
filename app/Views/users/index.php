@@ -40,6 +40,7 @@
                         <th>Nombre</th>
                         <th>E-mail</th>
                         <th>Usuario</th>                                           
+                        <th>Tipo usuario</th>                                           
                         <th>Estado</th>
                         <th>Miembro desde</th>
                         <!-- <th>Acciones</th> -->
@@ -52,6 +53,7 @@
                           <td><?= $usuario->first_name." ".$usuario->last_name ?></td>
                           <td><?= $usuario->email ?></td>
                           <td><?= $usuario->user ?></td>                          
+                          <td><span class="float-right badge bg-warning"><?= $usuario->tipousuario ?> </span></td>                          
                           <td><span class="float-right badge bg-<?= ($usuario->status == 1) ? "success" : "danger" ?>"><?= ($usuario->status == 1) ? "ACTIVO" : "INACTIVO" ?></span></td>                               
                           <td><?= date("d/m/Y", strtotime($usuario->created_at)) ?></td>
                           <!-- <td>

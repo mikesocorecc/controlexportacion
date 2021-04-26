@@ -56,6 +56,16 @@
                      <?= ($validation->getError('email')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('email')."</span>" : ""; ?>
                   </div>
                 <div class="form-group col-4">
+                    <label for="tipousuario">Tipo usuario:</label>                   
+                    <select class="form-control <?= ($validation->getError('tipousuario')) ? "is-invalid" : "" ?>" name="tipousuario" id="tipousuario">
+                         <option value="" selected disabled>---SELECCIONE--- </option>
+                         <option value="administrador">Administrador</option>
+                         <option value="empleado">Empleado</option>
+                     </select> 
+                       <!-- Error -->
+                       <?= ($validation->getError('tipousuario')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('tipousuario')."</span>" : ""; ?>     
+                  </div>           
+                <div class="form-group col-4">
                     <label for="user">Usuario:</label>
                     <input type="text" class="form-control <?= ($validation->getError('user')) ? "is-invalid" : "" ?>" id="user" name="user" placeholder="Usuario" value="">
                      <!-- Error -->

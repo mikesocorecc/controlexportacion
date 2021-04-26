@@ -38,6 +38,7 @@ class Usuario extends BaseController
             'last_name'          => 'required|alpha_numeric_punct',
             'email'         => 'required|valid_email|is_unique[users.email]',
             'user'          => 'required|alpha_numeric_punct',
+            'tipousuario'          => 'required|alpha_numeric_punct',
             'password'      => 'required'            
         ]);
           
@@ -52,16 +53,17 @@ class Usuario extends BaseController
                 $file->move($directory, $newName);                     
             }                 
             $data = [
-                'first_name'     => $this->request->getVar('first_name'),
-                'last_name'    => $this->request->getVar('last_name'),
-                'email'    => $this->request->getVar('email'),
-                'user'    => $this->request->getVar('user'),
+                'first_name'     => $this->request->getVar('first_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'last_name'    => $this->request->getVar('last_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'email'    => $this->request->getVar('email', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'user'    => $this->request->getVar('user', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'tipousuario'    => $this->request->getVar('tipousuario', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
                 'image' =>  $newName
             ];
             // Almaceno en la bd
             $this->usuario->save($data);
-            return redirect()->to('/usuario')->with("msg", ["type" => "success","title" => "¡Exito!", "body" => "Registro almacenado correctamente"]);
+            return redirect()->to('/usuario')->with("msg", ["type" => "info","title" => "¡Exito!", "body" => "Registro almacenado correctamente"]);
         } else {
             return redirect()->to('/usuario')->with("msg", [ "type" => "warning", "title" => "¡Alerta!", "body" => "El Registro no pudo ser almacenado"]);
         }

@@ -65,7 +65,7 @@ class Productos extends BaseController
             ];
             // Almaceno en la bd
             if($this->productoModel->save($data)){
-                return redirect()->to('/productos')->with("msg", ["type" => "success","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
+                return redirect()->to('/productos')->with("msg", ["type" => "info","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
             }else{
                 return redirect()->to('/productos')->with("msg", ["type" => "warning","title" => "¡Alerta!","body" => "Registro no almacenado"]);
             }            
@@ -124,7 +124,7 @@ class Productos extends BaseController
                 }                
             }                     
            if($this->productoModel->update( $id, $data)){
-               return redirect()->to('/productos')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
+               return redirect()->to('/productos')->with("msg", [ "type" => "info", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
            } else{
                return redirect()->to('/productos')->with("msg", [ "type" => "warning", "title" => "¡Alerta!", "body" => "Registro no almacenado" ]);
            }               
@@ -134,25 +134,24 @@ class Productos extends BaseController
     }
 
 // Eliminar usuario
-//     public function delete(){
-//         $request = \Config\Services::request();
-//         $id = $request->getVar("id");
-//         $this->usuario->where("user_id" ,$id);
-//         $resultado = $this->usuario->delete();
-//         if($resultado){
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "correcto"
-//             ];
-//         }else{
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "error"
-//             ];
-//         }
+    public function delete(){
+        $id = $this->request->getVar("id", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $this->productoModel->where("id" ,$id);
+        $resultado = $this->productoModel->delete();
+        if($resultado){
+            $respuesta = [
+                "id" => $id,
+                "resultado" => "correcto"
+            ];
+        }else{
+            $respuesta = [
+                "id" => $id,
+                "resultado" => "error"
+            ];
+        }
         
-//         die(json_encode($respuesta));
-//     }
+        die(json_encode($respuesta));
+    }
     
-// }
+
 }
