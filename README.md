@@ -21,17 +21,6 @@ Crear un sistema de administracion y gestion para exportar porductos y tener un 
 la compra a un proveedor
 
 
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
 ## Contributing
 
 We welcome contributions from the community.
@@ -41,6 +30,19 @@ Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/
 ## Server Requirements
 
 PHP version 7.4 se requiere esa version de php para poder funcionar en el sistema:
+
+## Usuarios para acceder al sistema
+
+usuario : admin
+password : 123
+
+usuario : empleado1
+password : empleado1
+
+usuario : admin2
+password : admin2
+
+
 
 ## pasos para usarlo en local
 
