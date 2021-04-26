@@ -28,7 +28,7 @@
           <div class="row">
             <div class="col-12">               
             <form action="<?= base_url() ?>/usuario/update/<?= $datos->user_id ?>" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?= $datos->user_id ?>">
+             <input type="hidden" name="id" value="<?= $datos->user_id ?>">
               <div class="card card-secondary">
                 <div class="card-header">
                   <h3 class="card-title"><?= $titulo ?></h3>    
@@ -82,6 +82,7 @@
                       <label class="custom-file-label" for="customFile">Seleccione archivo</label>
                     </div>                
                   </div>
+                  
                 </div>
               </div>   
               <div class="card-footer">

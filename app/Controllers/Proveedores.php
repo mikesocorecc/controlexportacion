@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\ProductosModel;
+use App\Models\ProveedoresModel;
 
-class Productos extends BaseController
+class Proveedores extends BaseController
 {
     protected $productoModel;
     public function __construct()
     {
-        $this->productoModel = new ProductosModel();
+        $this->productoModel = new ProveedoresModel();
     }
 
     // Listar Productos

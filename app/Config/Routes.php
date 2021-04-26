@@ -43,6 +43,7 @@ $routes->post('usuario/crear', 'Usuario::crear',['filter' => 'auth']);
 //RUTA PRODUCTOS PRODUCTOS
 $routes->get('productos', 'Productos::index',['filter' => 'auth']);		
 $routes->post('productos/crear', 'Productos::crear',['filter' => 'auth']);
+$routes->get("productos/editar/(:any)", "Productos::editar/$1");  
 // $routes->group("roles", ["namespace" => "App\Controllers", "filter" => "auth"], function($routes){
 
 // });

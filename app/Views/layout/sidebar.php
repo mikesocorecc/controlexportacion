@@ -38,6 +38,31 @@
               <i class="fas fa-box"></i>  <p>Productos</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="<?= base_url() ?>/proveedores" class="nav-link <?= (uri_string() == "proveedores" || uri_string() == "proveedores/crear"  || uri_string() == "proveedores/editar" ) ? "active" : "" ?>">              
+              <i class="fas fa-hand-holding-medical"></i> <p>Proveedores</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url() ?>/compras" class="nav-link <?= (uri_string() == "compras" || uri_string() == "compras/crear"  || uri_string() == "compras/editar" ) ? "active" : "" ?>">              
+              <i class="fas fa-book-open"></i> <p>Catalogo de precios</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url() ?>/compras" class="nav-link <?= (uri_string() == "compras" || uri_string() == "compras/crear"  || uri_string() == "compras/editar" ) ? "active" : "" ?>">              
+              <i class="fas fa-shopping-cart"></i> <p>Compras</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url() ?>/contenedores" class="nav-link <?= (uri_string() == "contenedores" || uri_string() == "contenedores/crear"  || uri_string() == "contenedores/editar" ) ? "active" : "" ?>">              
+              <i class="fas fa-toolbox"></i>  <p>Contenedores</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url() ?>/contenedores" class="nav-link <?= (uri_string() == "contenedores" || uri_string() == "contenedores/crear"  || uri_string() == "contenedores/editar" ) ? "active" : "" ?>">              
+              <i class="fas fa-truck"></i>  <p>Envios</p>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
