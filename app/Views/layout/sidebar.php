@@ -44,7 +44,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url() ?>/compras" class="nav-link <?= (uri_string() == "compras" || uri_string() == "compras/crear"  || uri_string() == "compras/editar" ) ? "active" : "" ?>">              
+              <a href="<?= base_url() ?>/precios" class="nav-link <?= (uri_string() == "precios" || uri_string() == "precios/crear"  || uri_string() == "precios/editar" ) ? "active" : "" ?>">              
               <i class="fas fa-book-open"></i> <p>Catalogo de precios</p>
               </a>
             </li>
