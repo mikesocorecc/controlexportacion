@@ -70,9 +70,6 @@ $routes->post('envios/crear', 'Envios::crear',['filter' => 'auth']);
 $routes->get("envios/editar/(:any)", "Envios::editar/$1", ['filter' => 'auth']);  
 
 
-// $routes->group("roles", ["namespace" => "App\Controllers", "filter" => "auth"], function($routes){
-
-// });
 
 
 /*

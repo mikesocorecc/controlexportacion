@@ -27,12 +27,14 @@
               <a href="<?= base_url() ?>/inicio" class="nav-link <?= (uri_string() == "inicio") ? "active" : "" ?>">
               <i class="fas fa-home"></i> <p>Inicio</p>
               </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?= base_url() ?>/usuario" class="nav-link <?= (uri_string() == "usuario" || uri_string() == "usuario/create" ) ? "active" : "" ?>">              
-                <i class="fas fa-user-alt"></i> <p>Usuarios</p>
-              </a>
-            </li>
+            </li>            
+            <?php if(session("tipousuario")  == "administrador" ){ ?>
+                  <li class="nav-item">
+                    <a href="<?= base_url() ?>/usuario" class="nav-link <?= (uri_string() == "usuario" || uri_string() == "usuario/create") ? "active" : "" ?>">              
+                      <i class="fas fa-user-alt"></i> <p>Usuarios</p>
+                    </a>
+                  </li>
+            <?php } ?>
             <li class="nav-item">
               <a href="<?= base_url() ?>/productos" class="nav-link <?= (uri_string() == "productos" || uri_string() == "productos/crear"  || uri_string() == "productos/editar" ) ? "active" : "" ?>">              
               <i class="fas fa-box"></i>  <p>Productos</p>
