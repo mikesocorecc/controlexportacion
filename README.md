@@ -1,28 +1,25 @@
 # Sistema pra el control de exportacion de productos
 
-## What is CodeIgniter?
+## Cual era el problema del cliente?
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+La empresa ABC es una empres que se dedica a la exportación de productos desde Centro América 
+hacia Estados Unidos y Canadá. Actualmente sus procesos los realizan con datos en Excel y 
+anotaciones a mano pero están buscando implementar un sistema que les permita agilizar sus 
+procesos de logística y asegurar el flujo de sus exportaciones.
+La empresa ABC tiene distintos proveedores a los cuales les compra producto al por mayor, sin
+embargo, es posible comprar el mismo producto a diferentes proveedores. Cada uno de estos 
+proveedores tiene precios definidos para los productos.
+Al comprar todos los productos, la empresa ABC programa un envío de producto en un contenedor. 
+Cada contenedor tiene un aeropuerto de destino y ABC necesita llevar el control de una fecha 
+tentativa de entrega, fecha real de arrivo, lugar de arrivo. 
 
-This repository holds the distributable version of the framework,
-including the user guide. It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
-
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
-
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
 
 
-## Important Change with index.php
+## La solucion que se le dio
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Crear un sistema de administracion y gestion para exportar porductos y tener un mejor control, el sitema registra que usuario realiza 
+la compra a un proveedor
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
 
 **Please** read the user guide for a better explanation of how CI4 works!
 
@@ -43,14 +40,18 @@ Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/
 
 ## Server Requirements
 
-PHP version 7.3 or higher is required, with the following extensions installed:
+PHP version 7.4 se requiere esa version de php para poder funcionar en el sistema:
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+## pasos para usarlo en local
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+- [.env]  app.baseURL = 'http://localhost/controlexportacion/'
+- [App/Config/App.php]  $baseUrl if you plan to use the HTTP\CURLRequest library
+- [App/Config/Database.php] 	
+Verifique su conexion a la base de datos
+		'hostname' => 'localhost',
+		'username' => 'root',
+		'password' => '',
+		'database' => 'codigosmk',
+		'DBDriver' => 'MySQLi','
 
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+        
