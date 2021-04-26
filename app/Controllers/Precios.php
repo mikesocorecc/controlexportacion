@@ -107,6 +107,22 @@ class Precios extends BaseController
         }
     }
 
+    // Metodo para obtener el precio dado el id del producto y el id del proveedor
+    public function  obtenerprecio(){
+        $idproveedor = $this->request->getVar("idproveedor");
+        $idproducto = $this->request->getVar("idproducto");
+        $this->preciosModel->select('precio');
+        $this->preciosModel->where('productoid', $idproducto);
+        $this->preciosModel->where('proveedorid', $idproveedor);
+        $resultado = $this->preciosModel->findAll();     
+        // Si no hay un precio registrado
+        if(empty($resultado)){
+           $respuesta = [ "respuesta" => "vacia" ];
+            die(json_encode($respuesta));   
+        }                   
+        die(json_encode($resultado, JSON_UNESCAPED_UNICODE));         
+    }
+
 // Eliminar usuario
 //     public function delete(){
 //         $request = \Config\Services::request();

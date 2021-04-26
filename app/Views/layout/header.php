@@ -28,8 +28,6 @@
   <link rel="stylesheet" href="<?= base_url() ?>/public/dist/css/styles.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
-
 </head>
 <body class="hold-transition  <?= (uri_string() == "login") ? "login-page" : "sidebar-mini" ?>">    
 <!-- Alert -->    
@@ -38,3 +36,5 @@
   <?php session()->removeTempdata("msg"); ?>
 <?php endif;  ?>
 <!-- Alert -->
+<!-- Esto me sirve para obtener la url base y usarla mediante ajax -->
+<input type="hidden" id="base_url" value="<?= base_url() ?>" >

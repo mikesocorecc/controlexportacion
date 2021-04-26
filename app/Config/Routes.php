@@ -43,12 +43,28 @@ $routes->post('usuario/crear', 'Usuario::crear',['filter' => 'auth']);
 //RUTA PRODUCTOS PRODUCTOS
 $routes->get('productos', 'Productos::index',['filter' => 'auth']);		
 $routes->post('productos/crear', 'Productos::crear',['filter' => 'auth']);
-$routes->get("productos/editar/(:any)", "Productos::editar/$1");  
+$routes->get("productos/editar/(:any)", "Productos::editar/$1",['filter' => 'auth']);  
 
 // Ruta proveedores
 $routes->get('proveedores', 'Proveedores::index',['filter' => 'auth']);		
 $routes->post('proveedores/crear', 'Proveedores::crear',['filter' => 'auth']);
-$routes->get("proveedores/editar/(:any)", "Proveedores::editar/$1");  
+$routes->get("proveedores/editar/(:any)", "Proveedores::editar/$1",['filter' => 'auth']);  
+
+// Ruta catalogo de precios
+$routes->get('precios', 'Precios::index',['filter' => 'auth']);		
+$routes->post('precios/crear', 'Precios::crear',['filter' => 'auth']);
+$routes->get("precios/editar/(:any)", "Precios::editar/$1", ['filter' => 'auth']);  
+
+// Ruta compras
+$routes->get('compras', 'Compras::index',['filter' => 'auth']);		
+$routes->post('compras/crear', 'Compras::crear',['filter' => 'auth']);
+$routes->get("compras/detalles/(:any)", "Compras::show/$1", ['filter' => 'auth']);  
+// $routes->get("detalles/(:any)", "clientes::detalles/$1");
+// Rutas contenedor
+$routes->get('contenedores', 'Contenedores::index',['filter' => 'auth']);		
+$routes->post('contenedores/crear', 'Contenedores::crear',['filter' => 'auth']);
+$routes->get("contenedores/editar/(:any)", "Contenedores::editar/$1", ['filter' => 'auth']);  
+
 
 // $routes->group("roles", ["namespace" => "App\Controllers", "filter" => "auth"], function($routes){
 

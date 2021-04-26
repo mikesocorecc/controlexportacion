@@ -2,14 +2,14 @@
     namespace App\Models;
     use CodeIgniter\Model;
 
-    class ComprasModel extends Model{
-        protected $table      = 'compras';
+    class DetallecomprasModel extends Model{
+        protected $table      = 'detallecompras';
         protected $primaryKey = 'id';    
         protected $useAutoIncrement = true;
         protected $returnType     = 'object';
         protected $useSoftDeletes = false;
     
-        protected $allowedFields = ['usuarioid', 'fechacompra','totalcompra'];
+        protected $allowedFields = ['compraid', 'productoid', 'proveedorid','cantidad','precio'];
     
         protected $useTimestamps = true;
         protected $createdField  = 'created_at';

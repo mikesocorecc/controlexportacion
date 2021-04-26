@@ -49,7 +49,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url() ?>/compras" class="nav-link <?= (uri_string() == "compras" || uri_string() == "compras/crear"  || uri_string() == "compras/editar" ) ? "active" : "" ?>">              
+              <a href="<?= base_url() ?>/compras" class="nav-link <?= (uri_string() == "compras" || uri_string() == "compras/crear"  || uri_string() == "compras/detalles" ) ? "active" : "" ?>">              
               <i class="fas fa-shopping-cart"></i> <p>Compras</p>
               </a>
             </li>
