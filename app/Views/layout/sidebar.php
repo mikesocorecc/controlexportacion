@@ -59,7 +59,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url() ?>/contenedores" class="nav-link <?= (uri_string() == "contenedores" || uri_string() == "contenedores/crear"  || uri_string() == "contenedores/editar" ) ? "active" : "" ?>">              
+              <a href="<?= base_url() ?>/envios" class="nav-link <?= (uri_string() == "envios" || uri_string() == "envios/crear"  || uri_string() == "envios/editar" ) ? "active" : "" ?>">              
               <i class="fas fa-truck"></i>  <p>Envios</p>
               </a>
             </li>

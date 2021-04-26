@@ -9,11 +9,11 @@
         <div class="container-fluid">
           <div class="row mb-2">            
             <div class="col-sm-6">
-              <h1>Productos</h1>              
+              <h1>Contenedores</h1>              
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="<?= base_url()?>/productos">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="<?= base_url()?>/contenedores">Inicio</a></li>
                 <li class="breadcrumb-item active"><?= $titulo ?></li>
               </ol>
             </div>
@@ -27,11 +27,11 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">               
-                  <form action="<?= base_url() ?>/productos/store" method="post" enctype="multipart/form-data">
+                  <form action="<?= base_url() ?>/contenedores/store" method="post" >
                           <div class="card card-outline card-info">
                                   <div class="card-header">
                                     <h3 class="card-title"><?= $titulo ?></h3>    
-                                    <a href="<?= base_url() ?>/productos" class="btn bg-gradient-info float-right"><i class="fas fa-chevron-left"> </i> Volver</a>                            
+                                    <a href="<?= base_url() ?>/contenedores" class="btn bg-gradient-info float-right"><i class="fas fa-chevron-left"> </i> Volver</a>                            
                                   </div>
                                   <!-- /.card-header -->
                                   <?php $validation = \Config\Services::validation(); ?>
@@ -44,39 +44,30 @@
                                                 <?= ($validation->getError('producto')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('producto')."</span>" : ""; ?>
                                             </div>
                                             <div class="form-group col-4">
-                                                <label for="sku">SKU:</label>
-                                                <input type="text" class="form-control <?= ($validation->getError('sku')) ? "is-invalid" : "" ?>" id="sku" name="sku" placeholder="SKU" value="">
+                                                <label for="cantidad">Cantidad:</label>
+                                                <input type="text" class="form-control <?= ($validation->getError('cantidad')) ? "is-invalid" : "" ?>" id="cantidad" name="cantidad" placeholder="cantidad" value="">
                                                 <!-- Error -->
-                                                <?= ($validation->getError('sku')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('sku')."</span>" : ""; ?>
+                                                <?= ($validation->getError('cantidad')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('cantidad')."</span>" : ""; ?>
                                             </div>
                                             <div class="form-group col-4">
-                                                <label for="presentacion">Presentacion:</label>
-                                                <input type="text" class="form-control <?= ($validation->getError('presentacion')) ? "is-invalid" : "" ?>" id="presentacion" name="presentacion" placeholder="Presentacion" value="">
+                                                <label for="fechaArribo">Fecha arribo:</label>
+                                                <input type="date" class="form-control <?= ($validation->getError('fechaArribo')) ? "is-invalid" : "" ?>" id="fechaArribo" name="fechaArribo" placeholder="Fecha arribo" value="">
                                                 <!-- Error -->
-                                                <?= ($validation->getError('presentacion')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('presentacion')."</span>" : ""; ?>
+                                                <?= ($validation->getError('fechaArribo')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('fechaArribo')."</span>" : ""; ?>
                                               </div>
                                             <div class="form-group col-4">
-                                                <label for="volumen">Volumen:</label>
-                                                <input type="text" class="form-control <?= ($validation->getError('volumen')) ? "is-invalid" : "" ?>" id="volumen" name="volumen" placeholder="Volumen" value="">
+                                                <label for="lugarArribo">Lugar arribo:</label>
+                                                <input type="text" class="form-control <?= ($validation->getError('lugarArribo')) ? "is-invalid" : "" ?>" id="lugarArribo" name="lugarArribo" placeholder="Lugar arribo" value="">
                                                 <!-- Error -->
-                                                <?= ($validation->getError('volumen')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('volumen')."</span>" : ""; ?>
+                                                <?= ($validation->getError('lugarArribo')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('lugarArribo')."</span>" : ""; ?>
                                               </div>
                                             <div class="form-group col-4">
-                                                <label for="unidades">Unidades por caja:</label>
-                                                <input type="text" class="form-control <?= ($validation->getError('unidades')) ? "is-invalid" : "" ?>" id="unidades" name="unidades" placeholder="Unidades por caja" value="">
+                                                <label for="aeropuertodestino">Aeropuerto destino:</label>
+                                                <input type="text" class="form-control <?= ($validation->getError('aeropuertodestino')) ? "is-invalid" : "" ?>" id="aeropuertodestino" name="aeropuertodestino" placeholder="Aeropuerto destino" value="">
                                                 <!-- Error -->
-                                                <?= ($validation->getError('unidades')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('unidades')."</span>" : ""; ?>
-                                              </div>
-                                                      
-                                              <div class="form-group col-4">              
-                                              <label for="fotografia">Fotografia Producto</label>    
-                                                <div class="custom-file">
-                                                  <input type="file" class="custom-file-input <?= ($validation->getError('fotografia') ) ? "is-invalid" : "" ?>" id="fotografia" name="fotografia">
-                                                   <!-- Error -->
-                                                <?= ($validation->getError('fotografia')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('fotografia')."</span>" : ""; ?>
-                                                  <label class="custom-file-label" for="customFile">Seleccione archivo</label>
-                                                </div>
-                                              </div>                             
+                                                <?= ($validation->getError('aeropuertodestino')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('aeropuertodestino')."</span>" : ""; ?>
+                                              </div>  
+                                                                                                                                                                      
                                       </div>
                                 </div>   
                                 <div class="card-footer">
