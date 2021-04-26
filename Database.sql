@@ -56,7 +56,7 @@ INSERT INTO `catalogosprecios` (`id`, `productoid`, `proveedorid`, `precio`, `cr
 CREATE TABLE `compras` (
   `id` int(11) NOT NULL,
   `usuarioid` int(11) NOT NULL,
-  `fechacompra` date NOT NULL DEFAULT current_timestamp(),
+  `fechacompra` datetime NOT NULL DEFAULT current_timestamp(),
   `totalcompra` decimal(10,2) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
@@ -83,7 +83,7 @@ CREATE TABLE `contenedores` (
   `identificacion` varchar(100) NOT NULL,
   `producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `fechaArribo` date NOT NULL DEFAULT current_timestamp(),
+  `fechaArribo` datetime NOT NULL DEFAULT current_timestamp(),
   `lugarArribo` varchar(255) NOT NULL,
   `aeropuertodestino` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
@@ -136,7 +136,7 @@ INSERT INTO `detallecompras` (`id`, `compraid`, `productoid`, `proveedorid`, `ca
 CREATE TABLE `envios` (
   `id` int(11) NOT NULL,
   `contenedorid` int(11) NOT NULL,
-  `fechaEntrega` date NOT NULL DEFAULT current_timestamp(),
+  `fechaEntrega` datetime NOT NULL DEFAULT current_timestamp(),
   `paisDestino` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()

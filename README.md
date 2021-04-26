@@ -46,14 +46,14 @@ password : admin2
 
 ## pasos para usarlo en local
 
-- [.env]  app.baseURL = 'http://localhost/controlexportacion/'
-- [App/Config/App.php]  $baseUrl if you plan to use the HTTP\CURLRequest library
-- [App/Config/Database.php] 	
-Verifique su conexion a la base de datos
-		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'codigosmk',
-		'DBDriver' => 'MySQLi','
+- [*.env*] =>  app.baseURL = 'http://localhost/controlexportacion/'
+- [*App/Config/App.php*] =>  $baseUrl = 'http://localhost/controlexportacion/'
+- [*App/Config/Database.php*] 	
+#Conexion a la base de datos
+*'hostname' => 'localhost',
+*'username' => 'root',
+*'password' => '',
+*'database' => 'codigosmk',
+*'DBDriver' => 'MySQLi','
 
         
