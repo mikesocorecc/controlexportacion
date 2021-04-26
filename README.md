@@ -50,10 +50,10 @@ password : admin2
 - [*App/Config/App.php*] =>  $baseUrl = 'http://localhost/controlexportacion/'
 - [*App/Config/Database.php*] 	
 #Conexion a la base de datos
-*'hostname' => 'localhost',
-*'username' => 'root',
-*'password' => '',
-*'database' => 'codigosmk',
-*'DBDriver' => 'MySQLi','
+- 'hostname' => 'localhost',
+- 'username' => 'root',
+- 'password' => '',
+- 'database' => 'codigosmk',
+- 'DBDriver' => 'MySQLi','
 
         
