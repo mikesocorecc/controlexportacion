@@ -5,125 +5,93 @@ use App\Models\ProveedoresModel;
 
 class Proveedores extends BaseController
 {
-    protected $productoModel;
+    protected $proveedorModel;
     public function __construct()
     {
-        $this->productoModel = new ProveedoresModel();
+        $this->proveedorModel = new ProveedoresModel();
     }
 
-    // Listar Productos
+    // Listar proveedores
     public function index(){
-        $productos = $this->productoModel->findAll();
+        $proveedores = $this->proveedorModel->findAll();
         $data = [
-            "titulo" => "Administra los productos",            
-            "datos" =>  $productos
+            "titulo" => "Administra los proveedores",            
+            "datos" =>  $proveedores
         ];
-        return view('productos/index', $data);
+        return view('proveedores/index', $data);
     }
 
-    // // Crear Producto
+    // //vista Crear proveedor
     public function crear(){
         $data = [
-            "titulo" => "Crear un nuevo producto"
+            "titulo" => "Crear un nuevo proveedor"
         ];
-        return view('productos/crear', $data);
+        return view('proveedores/crear', $data);
     }
 
-    // // Almacenar usuarios
+    // // Almacenar proveedor
     public function store(){
+        // Validacion de campos
         $input = $this->validate([
-            'producto'          => 'required',
-            'sku'          => 'required',
-            'presentacion'         => 'required',
-            'volumen'          => 'required',
-            'unidades'          => 'required',
-            'fotografia'  => 'uploaded[fotografia]|max_size[fotografia,4096]|mime_in[fotografia, image/jpg,image/jpeg,image/gif,image/png]'           
+            'proveedor'          => 'required',
+            'direccion'          => 'required',
+            'telefono'         => 'required',
+            'telefonoContacto'          => 'required'            
         ]);
 
-        //Comprueba la validacion
-        if ($input) {
-            $file = $this->request->getFile("fotografia");
-            $newName = strtotime("now").".".$file->getClientExtension();
-            $directory = "public/dist/img/productos/";
-            $file->move($directory, $newName);
+        //Comprueba la validacion e inserta registros
+        if ($input) {                                                            
             $data = [
-                'producto'     => $this->request->getVar('producto'),
-                'sku'    => $this->request->getVar('sku'),
-                'presentacion'    => $this->request->getVar('presentacion'),
-                'volumen'    => $this->request->getVar('volumen'),                
-                'unidades'    => $this->request->getVar('unidades'),                
-                'fotografia' =>  $newName
+                'proveedor'     => $this->request->getVar('proveedor'),
+                'direccion'    => $this->request->getVar('direccion'),
+                'telefono'    => $this->request->getVar('telefono'),
+                'telefonoContacto'    => $this->request->getVar('telefonoContacto')                
             ];
-            // Almaceno en la bd
-            if($this->productoModel->save($data)){
-                return redirect()->to('/productos')->with("msg", ["type" => "success","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
+            // Almaceno en la bd y redirecciono a la vista index
+            if($this->proveedorModel->save($data)){
+                return redirect()->to('/proveedores')->with("msg", ["type" => "success","title" => "¡Exito!","body" => "Registro almacenado correctamente"]);
             }else{
-                return redirect()->to('/productos')->with("msg", ["type" => "warning","title" => "¡Alerta!","body" => "Registro no almacenado"]);
+                return redirect()->to('/proveedores')->with("msg", ["type" => "warning","title" => "¡Alerta!","body" => "Registro no almacenado"]);
             }            
         } else {
-            return redirect()->to("/productos/crear")->with("errors", $this->validator->getErrors())->withInput();
+            return redirect()->to("/proveedores/crear")->with("errors", $this->validator->getErrors())->withInput();
         }
     }
 
-    // Editar producto
+    // vista Editar proveedor
     public function editar($id){
-        $producto = $this->productoModel->where('id', $id)->first();
-        $data = ["titulo" => "Editar producto", "datos" => $producto];
-        return view('productos/editar', $data);
+        $proveedor = $this->proveedorModel->where('id', $id)->first();
+        $data = ["titulo" => "Editar proveedor", "datos" => $proveedor];
+        return view('proveedores/editar', $data);
     }
 
-    // Actualizar usuario
-    public function update(){
+    // Actualizar proveedor
+    public function update(){        
         $id =  $this->request->getVar('id');
-        $producto = $this->productoModel->where('id', $id)->first();
-        $file = $this->request->getFile("fotografia");
+        $proveedor = $this->proveedorModel->where('id', $id)->first();        
         // validacion
         $input = $this->validate([
-            'producto' => 'required',
-            'sku' => 'required',
-            'presentacion' => 'required',
-            'volumen' => 'required',          
-            'unidades' => 'required'           
+            'proveedor'          => 'required',
+            'direccion'          => 'required',
+            'telefono'         => 'required',
+            'telefonoContacto'          => 'required'      
         ]);
 
-        if($input){
-            
+        // Comprueba la validacion y actualiza el registro
+        if($input){            
             $data = [
-                'producto'     => $this->request->getVar('producto'),
-                'sku'    => $this->request->getVar('sku'),
-                'presentacion'    => $this->request->getVar('presentacion'),
-                'volumen'    => $this->request->getVar('volumen'),                
-                'unidades'    => $this->request->getVar('unidades')                
-            ];
-            // En caso de querer actualizar la imagen
-            if($file != ""){
-               $input2 =  $this->validate([
-                    'fotografia' => 'uploaded[fotografia]|max_size[fotografia,4096]|mime_in[fotografia, image/jpg,image/jpeg,image/gif,image/png]'
-                ]);
-                if($input2){
-                    $newName = strtotime("now").".".$file->getClientExtension();
-                    $directory = "public/dist/img/productos/";
-                    if($producto->fotografia != "default.png"){
-                        unlink($directory."".$producto->fotografia);
-                    }                    
-                    $file->move($directory, $newName);
-                    $item1 = [
-                        'fotografia' =>  $newName
-                    ];
-                    $data = array_merge($data, $item1);
-                }else{
-                    return redirect()->to("/productos/editar/".$id)->with("errors", $this->validator->getErrors())->withInput();          
-                }
-                
-            }         
-            
-           if($this->productoModel->update( $id, $data)){
-               return redirect()->to('/productos')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
+                'proveedor'     => $this->request->getVar('proveedor'),
+                'direccion'    => $this->request->getVar('direccion'),
+                'telefono'    => $this->request->getVar('telefono'),
+                'telefonoContacto'    => $this->request->getVar('telefonoContacto')              
+            ];                              
+           if($this->proveedorModel->update( $id, $data)){
+               return redirect()->to('/proveedores')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
            } else{
-               return redirect()->to('/productos')->with("msg", [ "type" => "warning", "title" => "¡Alerta!", "body" => "Registro no almacenado" ]);
+               return redirect()->to('/proveedores')->with("msg", [ "type" => "warning", "title" => "¡Alerta!", "body" => "Registro no almacenado" ]);
            }               
         }else{
-            return redirect()->to("/productos/editar/".$id)->with("errors", $this->validator->getErrors())->withInput();
+            return redirect()->to("/proveedores/editar/".$id)->with("errors", $this->validator->getErrors())->withInput();
         }
     }
 

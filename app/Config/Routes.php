@@ -44,6 +44,12 @@ $routes->post('usuario/crear', 'Usuario::crear',['filter' => 'auth']);
 $routes->get('productos', 'Productos::index',['filter' => 'auth']);		
 $routes->post('productos/crear', 'Productos::crear',['filter' => 'auth']);
 $routes->get("productos/editar/(:any)", "Productos::editar/$1");  
+
+// Ruta proveedores
+$routes->get('proveedores', 'Proveedores::index',['filter' => 'auth']);		
+$routes->post('proveedores/crear', 'Proveedores::crear',['filter' => 'auth']);
+$routes->get("proveedores/editar/(:any)", "Proveedores::editar/$1");  
+
 // $routes->group("roles", ["namespace" => "App\Controllers", "filter" => "auth"], function($routes){
 
 // });
