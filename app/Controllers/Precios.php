@@ -31,13 +31,11 @@ class Precios extends BaseController
     }
 
     // //vista Crear catalogos de precios
-    public function crear(){
-        $productos = $this->productosModel->findAll();
-        $proveedores = $this->proveedoresModel->findAll();
+    public function crear(){      
         $data = [
             "titulo" => "Crear un nuevo precio de producto",
-            "productos" => $productos,
-            "proveedores" => $proveedores
+            "productos" => $this->productosModel->findAll(),
+            "proveedores" => $this->proveedoresModel->findAll()
         ];
         return view('precios/crear', $data);
     }
@@ -92,9 +90,9 @@ class Precios extends BaseController
         // Comprueba la validacion y actualiza el registro
         if($input){            
             $data = [
-                'productoid'     => $this->request->getVar('productoid'),
-                'proveedorid'    => $this->request->getVar('proveedorid'),
-                'precio'    => $this->request->getVar('precio')               
+                'productoid'     => $this->request->getVar('productoid', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'proveedorid'    => $this->request->getVar('proveedorid', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'precio'    => $this->request->getVar('precio', FILTER_SANITIZE_FULL_SPECIAL_CHARS)               
             ];    
 
            if($this->preciosModel->update($id, $data)){
@@ -109,8 +107,8 @@ class Precios extends BaseController
 
     // Metodo para obtener el precio dado el id del producto y el id del proveedor
     public function  obtenerprecio(){
-        $idproveedor = $this->request->getVar("idproveedor");
-        $idproducto = $this->request->getVar("idproducto");
+        $idproveedor = $this->request->getVar("idproveedor", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $idproducto = $this->request->getVar("idproducto", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $this->preciosModel->select('precio');
         $this->preciosModel->where('productoid', $idproducto);
         $this->preciosModel->where('proveedorid', $idproveedor);

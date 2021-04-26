@@ -90,9 +90,9 @@ class Compras extends BaseController
         if ($input) {    
 
             $data = [
-                'usuarioid'     => $this->request->getVar('usuarioid'),
+                'usuarioid'     => $this->request->getVar('usuarioid', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
                 'fechacompra'    => date("Y-m-d"),                
-                'totalcompra'    => $this->request->getVar('total_pagar'),                                         
+                'totalcompra'    => $this->request->getVar('total_pagar', FILTER_SANITIZE_FULL_SPECIAL_CHARS),                                         
             ];
             
             // Almaceno en la tabla compras y luego en el detalle de la compra            
@@ -101,10 +101,10 @@ class Compras extends BaseController
                 for ($i=0; $i < $totalRegistros ; $i++) { 
                     $data2 = [
                         'compraid'     => $idInsertado,
-                        'productoid'    => $this->request->getVar('productoid')[$i],
-                        'proveedorid'    => $this->request->getVar('proveedorid')[$i],
-                        'cantidad'    => $this->request->getVar('cantidad')[$i],                                         
-                        'precio'    => $this->request->getVar('precio')[$i]                                        
+                        'productoid'    => $this->request->getVar('productoid', FILTER_SANITIZE_FULL_SPECIAL_CHARS)[$i],
+                        'proveedorid'    => $this->request->getVar('proveedorid', FILTER_SANITIZE_FULL_SPECIAL_CHARS)[$i],
+                        'cantidad'    => $this->request->getVar('cantidad', FILTER_SANITIZE_FULL_SPECIAL_CHARS)[$i],                                         
+                        'precio'    => $this->request->getVar('precio', FILTER_SANITIZE_FULL_SPECIAL_CHARS)[$i]                                        
                     ]; 
                     $this->detallecompraModel->save($data2); 
                 }                              
@@ -112,11 +112,7 @@ class Compras extends BaseController
                 }else{
                     return redirect()->to('/compras')->with("msg", ["type" => "warning","title" => "¡Alerta!","body" => "Registro no almacenado"]);
                 }
-                       
-            // if($this->compraModel->save($data2)){                                              
-            // }else{
-            //     return redirect()->to('/contenedores')->with("msg", ["type" => "warning","title" => "¡Alerta!","body" => "Registro no almacenado"]);
-            // }            
+                                             
         } else {
             return redirect()->to("/compras/crear")->with("errors", $this->validator->getErrors())->withInput();
         }
@@ -131,7 +127,7 @@ class Compras extends BaseController
 
     // Actualizar proveedor
     public function update(){        
-        $id =  $this->request->getVar('id');
+        $id =  $this->request->getVar('id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $proveedor = $this->contenedorModel->where('id', $id)->first();        
         // validacion de los campos
         $input = $this->validate([
@@ -145,11 +141,11 @@ class Compras extends BaseController
         // Comprueba la validacion y actualiza el registro
         if($input){            
             $data = [
-                'producto'     => $this->request->getVar('producto'),
-                'cantidad'    => $this->request->getVar('cantidad'),
-                'fechaArribo'    => $this->request->getVar('fechaArribo'),
-                'lugarArribo'    => $this->request->getVar('lugarArribo'),              
-                'aeropuertodestino'    => $this->request->getVar('aeropuertodestino')              
+                'producto'     => $this->request->getVar('producto', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'cantidad'    => $this->request->getVar('cantidad', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'fechaArribo'    => $this->request->getVar('fechaArribo', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'lugarArribo'    => $this->request->getVar('lugarArribo', FILTER_SANITIZE_FULL_SPECIAL_CHARS),              
+                'aeropuertodestino'    => $this->request->getVar('aeropuertodestino', FILTER_SANITIZE_FULL_SPECIAL_CHARS)              
             ];                              
            if($this->contenedorModel->update( $id, $data)){
                return redirect()->to('/contenedores')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);
@@ -160,27 +156,4 @@ class Compras extends BaseController
             return redirect()->to("/contenedores/editar/".$id)->with("errors", $this->validator->getErrors())->withInput();
         }
     }
-
-// Eliminar usuario
-//     public function delete(){
-//         $request = \Config\Services::request();
-//         $id = $request->getVar("id");
-//         $this->usuario->where("user_id" ,$id);
-//         $resultado = $this->usuario->delete();
-//         if($resultado){
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "correcto"
-//             ];
-//         }else{
-//             $respuesta = [
-//                 "id" => $id,
-//                 "resultado" => "error"
-//             ];
-//         }
-        
-//         die(json_encode($respuesta));
-//     }
-    
-// }
 }

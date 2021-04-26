@@ -21,8 +21,8 @@ class Login extends BaseController{
 		              
 			$session = session();
 			
-			$user = $this->request->getVar('user');
-			$password = $this->request->getVar('password');
+			$user = $this->request->getVar('user', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+			$password = $this->request->getVar('password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 			$data = $this->usuario->where('user', $user)->first();
 			// Si existe el usuario
 			if($data){

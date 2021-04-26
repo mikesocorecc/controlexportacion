@@ -37,7 +37,6 @@ $routes->get('/inicio', 'Inicio::index',['filter' => 'auth']);
 
 // Ruta para usuarios
 $routes->get('usuario', 'Usuario::index',['filter' => 'auth']);	
-$routes->get('usuario/index', 'Usuario::index',['filter' => 'auth']);	
 $routes->post('usuario/crear', 'Usuario::crear',['filter' => 'auth']);
 
 //RUTA PRODUCTOS PRODUCTOS
@@ -59,11 +58,16 @@ $routes->get("precios/editar/(:any)", "Precios::editar/$1", ['filter' => 'auth']
 $routes->get('compras', 'Compras::index',['filter' => 'auth']);		
 $routes->post('compras/crear', 'Compras::crear',['filter' => 'auth']);
 $routes->get("compras/detalles/(:any)", "Compras::show/$1", ['filter' => 'auth']);  
-// $routes->get("detalles/(:any)", "clientes::detalles/$1");
+
 // Rutas contenedor
 $routes->get('contenedores', 'Contenedores::index',['filter' => 'auth']);		
 $routes->post('contenedores/crear', 'Contenedores::crear',['filter' => 'auth']);
 $routes->get("contenedores/editar/(:any)", "Contenedores::editar/$1", ['filter' => 'auth']);  
+
+// Rutas envios
+$routes->get('envios', 'Envios::index',['filter' => 'auth']);		
+$routes->post('envios/crear', 'Envios::crear',['filter' => 'auth']);
+$routes->get("envios/editar/(:any)", "Envios::editar/$1", ['filter' => 'auth']);  
 
 
 // $routes->group("roles", ["namespace" => "App\Controllers", "filter" => "auth"], function($routes){

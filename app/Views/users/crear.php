@@ -13,7 +13,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="<?= base_url()?>/usuario/index">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="<?= base_url()?>/usuario">Inicio</a></li>
                 <li class="breadcrumb-item active"><?= $titulo ?></li>
               </ol>
             </div>
@@ -28,7 +28,7 @@
           <div class="row">
             <div class="col-12">               
             <form action="<?= base_url() ?>/usuario/store" method="post" enctype="multipart/form-data">
-              <div class="card card-secondary">
+              <div class="card card-outline card-info">
                 <div class="card-header">
                   <h3 class="card-title"><?= $titulo ?></h3>    
                   <a href="<?= base_url() ?>/usuario" class="btn bg-gradient-info float-right"><i class="fas fa-chevron-left"> </i> Volver</a>                            
@@ -73,14 +73,7 @@
                       <input type="file" class="custom-file-input" id="image" name="image">
                       <label class="custom-file-label" for="customFile">Seleccione archivo</label>
                     </div>
-                  </div>
-                  <!-- <div class="form-group col-4">              
-                  <label for="date_of_birth">Fecha Nacimiento</label>
-                    <input type="date" class="form-control <?= ($validation->getError('date_of_birth')) ? "is-invalid" : "" ?>" id="date_of_birth" name="date_of_birth" placeholder="fecha nacimiento" value="">
-                    
-                     <?= ($validation->getError('date_of_birth')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('date_of_birth')."</span>" : ""; ?>
-                  </div> -->
-                 
+                  </div>                               
                 </div>
               </div>   
               <div class="card-footer">

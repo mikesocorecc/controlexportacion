@@ -2,14 +2,14 @@
     namespace App\Models;
     use CodeIgniter\Model;
 
-    class ContenedoresModel extends Model{
-        protected $table      = 'contenedores';
+    class EnviosModel extends Model{
+        protected $table      = 'envios';
         protected $primaryKey = 'id';    
         protected $useAutoIncrement = true;
         protected $returnType     = 'object';
         protected $useSoftDeletes = false;
     
-        protected $allowedFields = ['identificacion', 'producto', 'cantidad','fechaArribo','lugarArribo', 'aeropuertodestino', 'unidades'];
+        protected $allowedFields = ['contenedorid', 'fechaEntrega','paisDestino'];
     
         protected $useTimestamps = true;
         protected $createdField  = 'created_at';

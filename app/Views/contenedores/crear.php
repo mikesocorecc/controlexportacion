@@ -38,6 +38,12 @@
                                   <div class="card-body">                
                                       <div class="row">
                                             <div class="form-group col-4">
+                                                <label for="identificacion"># Identificacion:</label>
+                                                <input type="text" class="form-control <?= ($validation->getError('identificacion')) ? "is-invalid" : "" ?>" id="identificacion" name="identificacion" placeholder="Numero de identificacion" value="">
+                                                <!-- Error -->
+                                                <?= ($validation->getError('identificacion')) ? "<span class='d-block error invalid-feedback'>".$validation->getError('identificacion')."</span>" : ""; ?>
+                                            </div>
+                                            <div class="form-group col-4">
                                                 <label for="producto">Producto:</label>
                                                 <input type="text" class="form-control <?= ($validation->getError('producto')) ? "is-invalid" : "" ?>" id="producto" name="producto" placeholder="Producto" value="">
                                                 <!-- Error -->

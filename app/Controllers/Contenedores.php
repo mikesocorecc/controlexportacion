@@ -12,11 +12,10 @@ class Contenedores extends BaseController
     }
 
     // Listar proveedores
-    public function index(){
-        $contenedores = $this->contenedorModel->findAll();
+    public function index(){        
         $data = [
             "titulo" => "Administra los contenedores",            
-            "datos" =>  $contenedores
+            "datos" =>  $this->contenedorModel->findAll()
         ];
         return view('contenedores/index', $data);
     }
@@ -33,6 +32,7 @@ class Contenedores extends BaseController
     public function store(){
         // Validacion de campos
         $input = $this->validate([
+            'identificacion' => 'required',
             'producto' => 'required',
             'cantidad' => 'required',
             'fechaArribo' => 'required',
@@ -43,11 +43,12 @@ class Contenedores extends BaseController
         //Comprueba la validacion e inserta registros
         if ($input) {                                                            
             $data = [
-                'producto'     => $this->request->getVar('producto'),
-                'cantidad'    => $this->request->getVar('cantidad'),
-                'fechaArribo'    => $this->request->getVar('fechaArribo'),
-                'lugarArribo'    => $this->request->getVar('lugarArribo'),                
-                'aeropuertodestino'    => $this->request->getVar('aeropuertodestino')                
+                'identificacion'     => $this->request->getVar('identificacion', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'producto'     => $this->request->getVar('producto', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'cantidad'    => $this->request->getVar('cantidad', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'fechaArribo'    => $this->request->getVar('fechaArribo', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'lugarArribo'    => $this->request->getVar('lugarArribo', FILTER_SANITIZE_FULL_SPECIAL_CHARS),                
+                'aeropuertodestino'    => $this->request->getVar('aeropuertodestino', FILTER_SANITIZE_FULL_SPECIAL_CHARS)                
             ];
             // Almaceno en la bd y redirecciono a la vista index
             if($this->contenedorModel->save($data)){
@@ -61,18 +62,17 @@ class Contenedores extends BaseController
     }
 
     // vista Editar proveedor
-    public function editar($id){
-        $proveedor = $this->contenedorModel->where('id', $id)->first();
-        $data = ["titulo" => "Editar proveedor", "datos" => $proveedor];
+    public function editar($id){        
+        $data = ["titulo" => "Editar proveedor", "datos" => $this->contenedorModel->where('id', $id)->first() ];
         return view('contenedores/editar', $data);
     }
 
     // Actualizar proveedor
     public function update(){        
-        $id =  $this->request->getVar('id');
-        $proveedor = $this->contenedorModel->where('id', $id)->first();        
+        $id =  $this->request->getVar('id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);            
         // validacion de los campos
         $input = $this->validate([
+            'identificacion' => 'required',
             'producto' => 'required',
             'cantidad' => 'required',
             'fechaArribo' => 'required',
@@ -83,11 +83,12 @@ class Contenedores extends BaseController
         // Comprueba la validacion y actualiza el registro
         if($input){            
             $data = [
-                'producto'     => $this->request->getVar('producto'),
-                'cantidad'    => $this->request->getVar('cantidad'),
-                'fechaArribo'    => $this->request->getVar('fechaArribo'),
-                'lugarArribo'    => $this->request->getVar('lugarArribo'),              
-                'aeropuertodestino'    => $this->request->getVar('aeropuertodestino')              
+                'identificacion'     => $this->request->getVar('identificacion', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'producto'     => $this->request->getVar('producto', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'cantidad'    => $this->request->getVar('cantidad', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'fechaArribo'    => $this->request->getVar('fechaArribo', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'lugarArribo'    => $this->request->getVar('lugarArribo', FILTER_SANITIZE_FULL_SPECIAL_CHARS),              
+                'aeropuertodestino'    => $this->request->getVar('aeropuertodestino', FILTER_SANITIZE_FULL_SPECIAL_CHARS)              
             ];                              
            if($this->contenedorModel->update( $id, $data)){
                return redirect()->to('/contenedores')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);

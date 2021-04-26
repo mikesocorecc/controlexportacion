@@ -12,11 +12,10 @@ class Proveedores extends BaseController
     }
 
     // Listar proveedores
-    public function index(){
-        $proveedores = $this->proveedorModel->findAll();
+    public function index(){        
         $data = [
             "titulo" => "Administra los proveedores",            
-            "datos" =>  $proveedores
+            "datos" =>  $this->proveedorModel->findAll()
         ];
         return view('proveedores/index', $data);
     }
@@ -42,10 +41,10 @@ class Proveedores extends BaseController
         //Comprueba la validacion e inserta registros
         if ($input) {                                                            
             $data = [
-                'proveedor'     => $this->request->getVar('proveedor'),
-                'direccion'    => $this->request->getVar('direccion'),
-                'telefono'    => $this->request->getVar('telefono'),
-                'telefonoContacto'    => $this->request->getVar('telefonoContacto')                
+                'proveedor'     => $this->request->getVar('proveedor', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'direccion'    => $this->request->getVar('direccion', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'telefono'    => $this->request->getVar('telefono', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'telefonoContacto'    => $this->request->getVar('telefonoContacto', FILTER_SANITIZE_FULL_SPECIAL_CHARS)                
             ];
             // Almaceno en la bd y redirecciono a la vista index
             if($this->proveedorModel->save($data)){
@@ -59,15 +58,14 @@ class Proveedores extends BaseController
     }
 
     // vista Editar proveedor
-    public function editar($id){
-        $proveedor = $this->proveedorModel->where('id', $id)->first();
-        $data = ["titulo" => "Editar proveedor", "datos" => $proveedor];
+    public function editar($id){        
+        $data = ["titulo" => "Editar proveedor", "datos" => $this->proveedorModel->where('id', $id)->first()];
         return view('proveedores/editar', $data);
     }
 
     // Actualizar proveedor
     public function update(){        
-        $id =  $this->request->getVar('id');
+        $id =  $this->request->getVar('id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $proveedor = $this->proveedorModel->where('id', $id)->first();        
         // validacion
         $input = $this->validate([
@@ -80,10 +78,10 @@ class Proveedores extends BaseController
         // Comprueba la validacion y actualiza el registro
         if($input){            
             $data = [
-                'proveedor'     => $this->request->getVar('proveedor'),
-                'direccion'    => $this->request->getVar('direccion'),
-                'telefono'    => $this->request->getVar('telefono'),
-                'telefonoContacto'    => $this->request->getVar('telefonoContacto')              
+                'proveedor'     => $this->request->getVar('proveedor', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'direccion'    => $this->request->getVar('direccion', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'telefono'    => $this->request->getVar('telefono', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'telefonoContacto'    => $this->request->getVar('telefonoContacto', FILTER_SANITIZE_FULL_SPECIAL_CHARS)              
             ];                              
            if($this->proveedorModel->update( $id, $data)){
                return redirect()->to('/proveedores')->with("msg", [ "type" => "success", "title" => "¡Exito!", "body" => "Registro almacenado correctamente" ]);

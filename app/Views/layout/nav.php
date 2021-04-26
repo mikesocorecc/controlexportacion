@@ -21,13 +21,12 @@
             <li class="user-header bg-light">
               <img src="<?= base_url() ?>/public/dist/img/profile/<?= session("image") ?>" class="img-circle elevation-2" alt="User Image">      
               <p> <?= session('first_name')." ".session('last_name');  ?>
-                <small>Miembro desde Nov. 2012</small>
+                <small> <?= session('created_at') ?></small>
               </p>
             </li>        
             <li class="user-body">
               <div class="row">
-                <div class="col-6 text-center">
-                  <a href="#">Perfil</a>
+                <div class="col-6 text-center">                  
                 </div>
                 <div class="col-6 text-center">
                   <a href="<?= base_url() ?>/login/logout">Cerrar sesion</a>

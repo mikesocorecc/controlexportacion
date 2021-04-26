@@ -51,7 +51,7 @@
 
                                             <div class="form-group col-4">
                                                 <label for="proveedorid">Proveedor:</label>
-                                                <select class="form-control <?= ($validation->getError('proveedorid')) ? "is-invalid" : "" ?>" name="proveedorid" id="proveedorid">
+                                                <select class="form-control <?= ($validation->getError('proveedorid')) ? "is-invalid" : "" ?>" name="proveedorid" id="precioproveedorid">
                                                 <option value="" selected disabled>---SELECCIONE PROVEEDOR--- </option>
                                                   <?php foreach ($proveedores as $proveedor) { ?>
                                                     <option value="<?= $proveedor->id ?>" ><?= $proveedor->proveedor ?></option>							

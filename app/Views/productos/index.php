@@ -38,6 +38,7 @@
                       <tr>
                         <th>ID</th>
                         <th>Producto</th>
+                        <th>Unidades por caja</th>
                         <th>sku</th>
                         <th>presentacion</th>                                           
                         <th>volumen</th>
@@ -51,6 +52,7 @@
                       <tr>
                           <td><?= $registro->id  ?></td>
                           <td><?= $registro->producto ?></td>
+                          <td><?= $registro->unidades ?></td>
                           <td><?= $registro->sku ?></td>
                           <td><?= $registro->presentacion ?></td>                          
                           <td><?= $registro->volumen ?></td>                                                                      
